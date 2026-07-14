@@ -1,0 +1,205 @@
+[gd_scene load_steps=10 format=3 uid="uid://163setn3hdr"]
+
+[ext_resource type="Script" uid="uid://mxy4gtwoebxi" path="res://System/UI_Principal.gd" id="1_70n0a"]
+[ext_resource type="Texture2D" uid="uid://cpqy55apcgl3c" path="res://Imagenes/Simulador.jpg" id="3_lbq51"]
+[ext_resource type="Theme" uid="uid://7digcyyoy2mh" path="res://Temas/Botones.tres" id="3_u1fh3"]
+[ext_resource type="FontFile" uid="uid://cxd7834lvex8e" path="res://Fonts/suburga-2-semi-condensed-regular.otf" id="4_kyy46"]
+[ext_resource type="Script" uid="uid://bh21n6nxkesvi" path="res://System/SimuladorAA.gd" id="5_lbq51"]
+[ext_resource type="Script" uid="uid://bp8h4rdmeyjg1" path="res://System/PaginasManager.gd" id="7_u1fh3"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5nxps"]
+bg_color = Color(0.00242353, 0.161956, 0.297742, 1)
+
+[sub_resource type="Theme" id="Theme_uk3tm"]
+Panel/styles/panel = SubResource("StyleBoxFlat_5nxps")
+
+[sub_resource type="FontVariation" id="FontVariation_5nxps"]
+base_font = ExtResource("4_kyy46")
+
+[node name="node" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_70n0a")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_uk3tm")
+
+[node name="TextEdit" type="TextEdit" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 361.0
+offset_top = 31.0
+offset_right = -32.0
+offset_bottom = 241.0
+grow_horizontal = 2
+wrap_mode = 1
+
+[node name="BtnAbrir" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -1127.0
+offset_top = 21.0
+offset_right = -1007.0
+offset_bottom = 53.0
+grow_horizontal = 0
+theme = ExtResource("3_u1fh3")
+text = "Abrir GMD
+"
+
+[node name="BtnGuardar" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -962.0
+offset_top = 21.0
+offset_right = -815.0
+offset_bottom = 53.0
+grow_horizontal = 0
+theme = ExtResource("3_u1fh3")
+text = "Guardar"
+
+[node name="Simulador" type="Button" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -247.0
+offset_top = 537.0
+offset_right = -127.0
+offset_bottom = 569.0
+grow_horizontal = 0
+theme = ExtResource("3_u1fh3")
+text = "Simulador"
+
+[node name="BtnNext" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -182.0
+offset_top = 489.0
+offset_right = -125.0
+offset_bottom = 521.0
+grow_horizontal = 0
+theme = ExtResource("3_u1fh3")
+text = "Sig.
+"
+
+[node name="BtnPrev" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -246.0
+offset_top = 489.0
+offset_right = -193.0
+offset_bottom = 521.0
+grow_horizontal = 0
+theme = ExtResource("3_u1fh3")
+text = "Ant.
+"
+
+[node name="ItemList" type="ItemList" parent="."]
+layout_mode = 0
+offset_left = 25.0
+offset_top = 110.0
+offset_right = 337.0
+offset_bottom = 572.0
+
+[node name="Label2" type="Label" parent="."]
+layout_mode = 1
+offset_left = 106.0
+offset_top = 81.0
+offset_right = 250.0
+offset_bottom = 104.0
+text = "Secciones de texto"
+
+[node name="Simulacion" type="Sprite2D" parent="."]
+position = Vector2(627, 412)
+scale = Vector2(0.7, 0.7)
+texture = ExtResource("3_lbq51")
+script = ExtResource("5_lbq51")
+
+[node name="Label" type="RichTextLabel" parent="Simulacion"]
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -354.285
+offset_top = -330.0
+offset_right = -369.285
+offset_bottom = -228.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_fonts/normal_font = SubResource("FontVariation_5nxps")
+theme_override_font_sizes/normal_font_size = 36
+bbcode_enabled = true
+text = "¿Quebrada?  ¡N-No, mi voz no está quebrándose!
+¡Nervios de acero, te digo!"
+autowrap_mode = 0
+
+[node name="FileDialog" type="FileDialog" parent="."]
+title = "Open a File"
+position = Vector2i(265, 47)
+ok_button_text = "Open"
+cancel_button_text = "Cancelar"
+file_mode = 0
+access = 2
+filters = PackedStringArray(".bin")
+
+[node name="SaveDialog" type="FileDialog" parent="."]
+auto_translate_mode = 1
+title = "Guardar Script"
+position = Vector2i(265, 47)
+cancel_button_text = "Cancelar"
+access = 2
+filters = PackedStringArray(".bin")
+
+[node name="PageManager" type="Node" parent="."]
+script = ExtResource("7_u1fh3")
+
+[node name="Label" type="Label" parent="PageManager"]
+offset_left = 935.0
+offset_top = 364.0
+offset_right = 995.0
+offset_bottom = 387.0
+text = "Paginas"
+
+[node name="Contador" type="Label" parent="PageManager"]
+offset_left = 983.0
+offset_top = 401.0
+offset_right = 1026.0
+offset_bottom = 424.0
+text = "/1000"
+
+[node name="HSlider" type="HSlider" parent="PageManager"]
+offset_left = 906.0
+offset_top = 431.0
+offset_right = 1028.0
+offset_bottom = 474.0
+
+[node name="LineEditSearch" type="LineEdit" parent="PageManager"]
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 907.0
+offset_top = 394.0
+offset_right = -176.438
+offset_bottom = 437.0
+grow_horizontal = 2
+
+[connection signal="text_changed" from="TextEdit" to="Simulacion" method="_on_text_changed"]
