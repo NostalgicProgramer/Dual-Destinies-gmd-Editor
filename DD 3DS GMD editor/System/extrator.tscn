@@ -1,10 +1,12 @@
-[gd_scene load_steps=12 format=3 uid="uid://163setn3hdr"]
+[gd_scene load_steps=14 format=3 uid="uid://163setn3hdr"]
 
 [ext_resource type="Script" uid="uid://mxy4gtwoebxi" path="res://System/UI_Principal.gd" id="1_70n0a"]
 [ext_resource type="Texture2D" uid="uid://cpqy55apcgl3c" path="res://Imagenes/Simulador.jpg" id="3_lbq51"]
 [ext_resource type="Theme" uid="uid://7digcyyoy2mh" path="res://Temas/Botones.tres" id="3_u1fh3"]
 [ext_resource type="FontFile" uid="uid://cxd7834lvex8e" path="res://Fonts/suburga-2-semi-condensed-regular.otf" id="4_kyy46"]
+[ext_resource type="Texture2D" uid="uid://ctd3frcxsauc4" path="res://Imagenes/Simulador4.png" id="5_hqf2g"]
 [ext_resource type="Script" uid="uid://bh21n6nxkesvi" path="res://System/SimuladorAA.gd" id="5_lbq51"]
+[ext_resource type="Script" uid="uid://cku0alurmykp7" path="res://System/namehelper.gd" id="6_ifhey"]
 [ext_resource type="Texture2D" uid="uid://ckkjq3kb1a8au" path="res://Imagenes/Simulador2.jpg" id="6_u1fh3"]
 [ext_resource type="Texture2D" uid="uid://dbtd17yb4lhnd" path="res://Imagenes/Simulador3.jpg" id="7_glhut"]
 [ext_resource type="Script" uid="uid://bp8h4rdmeyjg1" path="res://System/PaginasManager.gd" id="7_u1fh3"]
@@ -132,7 +134,6 @@ offset_bottom = 104.0
 text = "Secciones de texto"
 
 [node name="Simulacion" type="Sprite2D" parent="."]
-visible = false
 position = Vector2(627, 412)
 scale = Vector2(0.7, 0.7)
 texture = ExtResource("3_lbq51")
@@ -154,6 +155,30 @@ theme_override_font_sizes/normal_font_size = 36
 bbcode_enabled = true
 text = "¿Quebrada?  ¡N-No, mi voz no está quebrándose!
 ¡Nervios de acero, te digo!"
+autowrap_mode = 0
+
+[node name="Simulacion4" type="Sprite2D" parent="Simulacion"]
+scale = Vector2(1, 1)
+texture = ExtResource("5_hqf2g")
+script = ExtResource("6_ifhey")
+
+[node name="Label" type="RichTextLabel" parent="Simulacion/Simulacion4"]
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -371.0
+offset_top = -379.0
+offset_right = -961.0
+offset_bottom = -335.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_outline_color = Color(0, 0, 0.447059, 1)
+theme_override_constants/outline_size = 9
+theme_override_fonts/normal_font = SubResource("FontVariation_5nxps")
+theme_override_font_sizes/normal_font_size = 30
+bbcode_enabled = true
+text = "Athena"
 autowrap_mode = 0
 
 [node name="Simulacion2" type="Sprite2D" parent="."]
@@ -185,6 +210,7 @@ cuando fue detonada."
 autowrap_mode = 0
 
 [node name="Simulacion3" type="Sprite2D" parent="."]
+visible = false
 position = Vector2(627, 412)
 scale = Vector2(0.7, 0.7)
 texture = ExtResource("7_glhut")
@@ -261,6 +287,7 @@ offset_bottom = 414.0
 grow_horizontal = 2
 
 [node name="label" type="Label" parent="."]
+layout_mode = 0
 offset_left = 922.0
 offset_top = 505.0
 offset_right = 1007.0
@@ -268,6 +295,7 @@ offset_bottom = 528.0
 text = "Simulación"
 
 [node name="OptionButton" type="OptionButton" parent="."]
+layout_mode = 0
 offset_left = 901.0
 offset_top = 537.0
 offset_right = 1031.0
@@ -281,5 +309,4 @@ popup/item_1/id = 1
 popup/item_2/text = "Perfiles"
 popup/item_2/id = 2
 
-[connection signal="text_changed" from="TextEdit" to="Simulacion" method="_on_text_changed"]
 [connection signal="item_selected" from="OptionButton" to="Simulacion" method="_on_option_button_item_selected"]

@@ -14,3 +14,7 @@ config/name="DD GMD editor"
 run/main_scene="uid://163setn3hdr"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="uid://cyckfh01om6c7"
+
+[display]
+
+window/size/resizable=false
