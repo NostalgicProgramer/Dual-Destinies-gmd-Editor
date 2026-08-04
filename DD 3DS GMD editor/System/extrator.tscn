@@ -158,7 +158,6 @@ text = "¿Quebrada?  ¡N-No, mi voz no está quebrándose!
 autowrap_mode = 0
 
 [node name="Simulacion4" type="Sprite2D" parent="Simulacion"]
-scale = Vector2(1, 1)
 texture = ExtResource("5_hqf2g")
 script = ExtResource("6_ifhey")
 
