@@ -76,19 +76,18 @@ grow_horizontal = 0
 theme = ExtResource("3_u1fh3")
 text = "Guardar"
 
-[node name="Simulador" type="Button" parent="."]
-visible = false
+[node name="BtnCopy" type="Button" parent="."]
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
 offset_left = -247.0
-offset_top = 537.0
+offset_top = 450.0
 offset_right = -127.0
-offset_bottom = 569.0
+offset_bottom = 482.0
 grow_horizontal = 0
 theme = ExtResource("3_u1fh3")
-text = "Simulador"
+text = "Copiar"
 
 [node name="BtnNext" type="Button" parent="."]
 layout_mode = 1
@@ -96,9 +95,9 @@ anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
 offset_left = -182.0
-offset_top = 448.0
+offset_top = 399.0
 offset_right = -125.0
-offset_bottom = 480.0
+offset_bottom = 431.0
 grow_horizontal = 0
 theme = ExtResource("3_u1fh3")
 text = "Sig.
@@ -110,9 +109,9 @@ anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
 offset_left = -246.0
-offset_top = 448.0
+offset_top = 399.0
 offset_right = -193.0
-offset_bottom = 480.0
+offset_bottom = 431.0
 grow_horizontal = 0
 theme = ExtResource("3_u1fh3")
 text = "Ant.
@@ -258,31 +257,38 @@ script = ExtResource("7_u1fh3")
 
 [node name="Label" type="Label" parent="PageManager"]
 offset_left = 935.0
-offset_top = 341.0
+offset_top = 292.0
 offset_right = 995.0
-offset_bottom = 364.0
+offset_bottom = 315.0
 text = "Paginas"
+
+[node name="Label2" type="Label" parent="PageManager"]
+offset_left = 944.0
+offset_top = 249.0
+offset_right = 1107.0
+offset_bottom = 272.0
+text = "Modo paginado"
 
 [node name="Contador" type="Label" parent="PageManager"]
 offset_left = 983.0
-offset_top = 378.0
+offset_top = 329.0
 offset_right = 1026.0
-offset_bottom = 401.0
+offset_bottom = 352.0
 text = "/1000"
 
 [node name="HSlider" type="HSlider" parent="PageManager"]
 offset_left = 906.0
-offset_top = 408.0
+offset_top = 359.0
 offset_right = 1028.0
-offset_bottom = 451.0
+offset_bottom = 402.0
 
 [node name="LineEditSearch" type="LineEdit" parent="PageManager"]
 anchors_preset = 10
 anchor_right = 1.0
 offset_left = 907.0
-offset_top = 371.0
+offset_top = 322.0
 offset_right = -176.438
-offset_bottom = 414.0
+offset_bottom = 365.0
 grow_horizontal = 2
 
 [node name="label" type="Label" parent="."]
@@ -307,5 +313,12 @@ popup/item_1/text = "Pruebas"
 popup/item_1/id = 1
 popup/item_2/text = "Perfiles"
 popup/item_2/id = 2
+
+[node name="CheckModoPaginado" type="CheckButton" parent="."]
+layout_mode = 0
+offset_left = 903.0
+offset_top = 249.0
+offset_right = 947.0
+offset_bottom = 273.0
 
 [connection signal="item_selected" from="OptionButton" to="Simulacion" method="_on_option_button_item_selected"]

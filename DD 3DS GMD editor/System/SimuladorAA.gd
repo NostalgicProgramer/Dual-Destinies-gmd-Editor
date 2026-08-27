@@ -5,6 +5,7 @@ extends Sprite2D
 @onready var label_pruebas = $"../Simulacion2/Label"
 @onready var label_perfiles = $"../Simulacion3/Label"
 
+@onready var btn_copiar = $"../BtnCopy"
 # Diccionario para gestionar las vistas fácilmente
 # Referencias a los nodos de vista
 @onready var vistas = {
@@ -62,6 +63,9 @@ func _ready():
 	label_dialogo.bbcode_enabled = true
 	label_pruebas.bbcode_enabled = true
 	label_perfiles.bbcode_enabled = true
+	
+	btn_copiar.pressed.connect(_on_btn_copiar_pressed)
+	
 	cambiar_vista("DIALOGO")
 
 func _on_option_button_item_selected(index):
@@ -82,6 +86,12 @@ func cambiar_vista(nueva_vista):
 func _process(_delta):
 	if edit_principal and edit_principal.text != null:
 		_actualizar_previsualizacion()
+		
+		# Verificamos si hay texto activo en el simulador actual para habilitar/deshabilitar el botón
+		if btn_copiar:
+			var label_activo = labels.get(vista_actual)
+			# El botón estará habilitado solo si el label tiene texto (ignorando espacios vacíos)
+			btn_copiar.disabled = (label_activo == null or label_activo.text.strip_edges().is_empty())
 
 func _actualizar_previsualizacion():
 	# Elegimos qué label actualizar basándonos en la vista actual
@@ -106,3 +116,44 @@ func _actualizar_previsualizacion():
 		
 	# Aplicamos el resultado al label correcto
 	label_a_usar.text = texto_final
+
+
+func _on_btn_copiar_pressed():
+	if not labels.has(vista_actual):
+		return
+		
+	var label_activo = labels[vista_actual]
+	var texto_con_bbcode = label_activo.text
+	
+	if texto_con_bbcode.is_empty():
+		return
+		
+	# Limpiamos las etiquetas BBCode para que solo quede el texto plano
+	var texto_limpio = _remover_etiquetas_bbcode(texto_con_bbcode)
+	
+	# Copiamos al portapapeles usando Godot 4
+	DisplayServer.clipboard_set(texto_limpio)
+	
+	# Feedback visual automático
+	_dar_feedback_visual()
+
+# Función auxiliar para quitar todo lo que esté entre corchetes [...]
+func _remover_etiquetas_bbcode(texto: String) -> String:
+	var regex = RegEx.new()
+	regex.compile("\\[.*?\\]") # Busca cualquier etiqueta entre corchetes
+	return regex.sub(texto, "", true) # Las borra por completo
+
+func _dar_feedback_visual():
+	if not btn_copiar:
+		return
+		
+	var texto_original = btn_copiar.text
+	btn_copiar.text = "¡Copiado!"
+	btn_copiar.disabled = true
+	
+	var arbol = get_tree()
+	if arbol:
+		await arbol.create_timer(1.0).timeout
+		if is_instance_valid(btn_copiar):
+			btn_copiar.text = texto_original
+			btn_copiar.disabled = false
